@@ -1,21 +1,17 @@
 module.exports = app => {
     const produtoController = require("../controllers/produto.controller");
-    //Rota para criar um novo registro Produto
+    //routes: rota url
+    // rota para criar m novo regirstro produto
     app.post("/produtos", produtoController.create);
-
-    //Buscar todos os registros de Produtos
+    //buscar todos os rgistros fr produtos
     app.get("/produtos", produtoController.findAll);
-
-    //Buscar apenas um registro de Produto
-    app.get("produtos/:produtoId", produtoController.findById);
- 
-    //Alterar um registro de Produto
+    //buscar apenas  um regsitro de produto
+    app.get("/produtos/:produtoId", produtoController.findById);
+    //alterar um registro de produto
     app.put("/produtos/:produtoId", produtoController.update);
-
-    //Excluir um registro de Produto
+    //excluir um registro de produtoas
     app.delete("/produtos/:produtoId", produtoController.delete);
-
-    //Excluir todos os registros de Produto
+    //excluir todos os registros de produto
     app.delete("/produtos", produtoController.deleteAll);
 
 }

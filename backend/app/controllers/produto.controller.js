@@ -1,18 +1,58 @@
 const produtoModel = require("../models/produto.model")
+// controller: interligação banco de dados e frontend; segurança; quem pode acessar o que ; limites usuario
+exports.create = (req, res) => {
+    if(!req.body.nome || !req.body.valor){
+        res.status(400).send({
+            message: "Conteúdo do corpo da requisição vazia."
+        });
+    } else {
+        const produto = new produtoModel({
+            nome: req.body.nome,
+            valor: req.body.valor
+        });
 
-exports.create = (req, res) => {}
+        produtoModel.create(produto, (err, data) =>{
+            if (err){
+                res.status(500).send({
+                    message: err.message || "Ocorreu um erro ao inserir os dados"
+                });
+            } else {
+                res.send(data);
+            }
+        });
+    }
+}
+
 exports.findAll = (req, res) => {
     produtoModel.getAll((err, data) => {
-        if(err){
+        if (err){
             res.status(500).send({
-                message: err.message || "Ocorreu erro desonhecido"
+                message:err.message || "ocorreu erro desconhecido"
             });
         } else {
             res.send(data);
         }
     });
 }
-exports.findById = (req, res) => {}
+
+exports.findById = (req, res) => {
+    produtoModel.findById(req.params.produtoId, (err, data) => {
+        if (err){
+            if(err.type == "not_found"){
+                res.status(404).send({
+                    message: "produto não encontrado. ID: "+req.params.produtoId
+                });
+            } else {
+                res.status(500).send({
+                    message:"erro ao retornar o produto com ID: " +req.params.produtoId
+                });
+            }
+        } else {
+            res.send(data);
+        }
+    })
+}
+
 exports.update = (req, res) => {}
 exports.delete = (req, res) => {}
 exports.deleteAll = (req, res) => {}
