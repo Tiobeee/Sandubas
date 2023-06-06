@@ -53,7 +53,35 @@ exports.findById = (req, res) => {
     })
 }
 
-exports.update = (req, res) => {}
+exports.update = (req, res) => {
+    if (!req.body.nome || !req.body.valor){
+        res.status(400).send({
+            message: "Conteúdo do corpo da requisição vazia."
+        });
+    } else {
+        const produto = new produtoModel({
+            nome: req.body.nome,
+            valor:req.body.valor
+        });
+    
+    // }tira daqui
+    produtoModel.updateById(req.params.produtoId, produto, (err, data) => {
+        if (err) {
+            if (err.type == "not-found") {
+                res.status(400).send({
+                    message: "Produto não encontrado."
+                })
+            } else {
+                res.status(500).send({
+                    message: "Erro ao atualizar produto."
+                })
+            } }
+            else {
+                res.send(data);
+            }
+    })
+}
+}
 exports.delete = (req, res) => {}
 exports.deleteAll = (req, res) => {}
 

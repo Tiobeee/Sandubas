@@ -55,8 +55,7 @@ ProdutoModel.getAll = result => {
 
 //atualizar produto por id
 ProdutoModel.updateById = (produtoId, produto, result) => {
-    sql.query("UPADATE produtos set nome = ?, valor = ? WHERE idprodutos = ?",
-        [produto.nome, produto.valor, produtoId], (err, res) => {
+    sql.query("UPDATE produtos set nome = ?, valor = ? WHERE idprodutos = ?", [produto.nome, produto.valor, produtoId], (err, res) => {
             if(err){
                 console.log("erro: ", err);
                 result(null, err);
@@ -71,6 +70,16 @@ ProdutoModel.updateById = (produtoId, produto, result) => {
 
 //remover produto por id
 ProdutoModel.remove = (produtoId, result) => {
+    sql.query("DELETE FROM produtos WHERE idprodutos = ?", produtoId, (err, res) => {
+        if (err) {
+            console.log("erro: ", err);
+            result(err, null);
+        } else if (res.affectedRows == 0){
+            result({ type: "not_found"}, null);
+        } else {
+            result(null, res);
+        }
+    });
 };
 
 //remover todos os prdutos 
