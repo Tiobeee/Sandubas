@@ -84,5 +84,13 @@ ProdutoModel.remove = (produtoId, result) => {
 
 //remover todos os prdutos 
 ProdutoModel.removeAll = (result) =>{
+    sql.query("DELETE FROM produtos", produtoId, (err, res) => {
+        if (err) {
+            console.log("erro: ", err);
+            result(err, null);
+        } else {
+            result(null, res);
+        }
+    });
 };
 module.exports = ProdutoModel;
