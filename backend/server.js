@@ -12,6 +12,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/produto.routes.js")(app);
+require("./app/routes/pedido.routes.js")(app);
 
 app.listen(3000, () => {
     console.log("servidor rodando na porta 3000");
