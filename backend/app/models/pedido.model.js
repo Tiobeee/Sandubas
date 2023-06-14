@@ -1,9 +1,9 @@
 const sql = require("./db.js");
 // model: define estrutura da database (tabela no mysql)
 //construtor
-const PedidoModel = function(pedidos){
-    this.hora = pedidos.hora;
-    this.status = pedidos.status;
+const PedidoModel = function(pedido){
+    this.hora = pedido.hora;
+    this.status = pedido.status;
 }
 
 //cria novo pedido no banco
