@@ -20,10 +20,10 @@ Usuario.findByEmail = (emailUsuario, result) => {
     sql.query("SELECT * FROM usuarios WHERE email = ?", emailUsuario, (err, res) => {
         if (err){
             result(err, null);
-        } else if (res.lenght){
+        } else if (res.length){
             result(null, res[0])
         } else {
-            result ({type: "not_found"}, null);
+            result({type: "not_found"}, null);
         }
     })
 }
@@ -32,10 +32,10 @@ Usuario.findById = (idUsuario, result) => {
     sql.query("SELECT * FROM usuarios WHERE idusuarios = ?", idUsuario, (err, res) => {
         if (err){
             result(err, null);
-        } else if (res.lenght){
+        } else if (res.length){
             result(null, res[0])
         } else {
-            result ({type: "not_found"}, null);
+            result({type: "not_found"}, null);
         }
     })
 }

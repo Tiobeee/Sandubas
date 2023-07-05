@@ -28,11 +28,11 @@ exports.signUp = (req, res) => {
 }
 
 exports.signIn = (req, res) => {
-    usuarioModel.apply.findByEmail(req.body.email, (err, data) => {
+    usuarioModel.findByEmail(req.body.email, (err, data) => {
         if (err) {
             if (err == "not_found"){
                 res.status(404).send({
-                    message: "Não foi encontrado usuario com o email digitado"
+                    message: "Não foi encontrado usuario com o email digitado."
                 })
             } else {
                 res.status(500).send({
@@ -47,7 +47,7 @@ exports.signIn = (req, res) => {
                     message: "Senha inválida!"
                 })
             } else {
-                let token = jwt.sign({id: data.idusuario}, config.secret, {expiresIn: 86400}); //24h
+                let token = jwt.sign({id: data.idusuarios}, config.secret, {expiresIn: 86400}); //24h
                 res.status(200).send({
                     accessToken: token,
                     id: data.idusuarios,
@@ -56,5 +56,6 @@ exports.signIn = (req, res) => {
                 })
             }
         }
+
     })
 }

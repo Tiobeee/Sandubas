@@ -1,6 +1,7 @@
 module.exports = app => {
     const usuarioController = require("../controllers/usuario.controller.js");
 
-    app.post("/singup", usuarioController.signUp);
-    app.post("/singin", usuarioController.signIn);
+    app.post("/signup", usuarioController.signUp);
+    app.post("/signin", usuarioController.signIn);
 }
+
