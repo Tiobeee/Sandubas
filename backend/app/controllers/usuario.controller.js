@@ -59,3 +59,60 @@ exports.signIn = (req, res) => {
 
     })
 }
+
+exports.findAll = (req, res) => {
+    usuarioModel.getAll((err, data) => {
+        if (err){
+            res.status(500).send({
+                message: err.message || "Ocorreu erro desconhecido:("
+            });
+        } else {
+            res.send(data);
+        }
+    });
+}
+
+exports.update = (req, res) => {
+    if (!req.body.email || !req.body.senha || !req.body.tipo) {
+        res.status(400).send({
+            message: "Conteúdo do corpo da requisição vazia."
+        });
+    } else {
+        const usuario = new usuarioModel({
+            email: req.body.email,
+            senha: bcrypt.hashSync(req.body.senha, 8),
+            tipo: req.body.tipo
+        });
+        usuarioModel.updateById(req.params.idUsuario, usuario, (err, data) => {
+            if (err) {
+                if (err.type == "not-found") {
+                    res.status(404).send({
+                        message: "Usuário não encontrado."
+                    })
+                } else {
+                    res.status(500).send({
+                        message: "Erro ao atualizar usuário."
+                    })
+                }
+            }
+            else {
+                res.send(data);
+            }
+        });
+    }
+}
+
+
+exports.delete = (req, res) => {
+    usuarioModel.remove(req.params.idUsuario, (err, data) => {
+        if (err) {
+            if (err.type == "not_found"){
+                res.status(404).send({message:"Usuário não encontrado."})
+            } else {
+                res.status(500).send({message:"Erro ao deletar usuario"})
+            }
+        } else {
+            res.send({message:"Usuário deletado com sucesso"});
+        }
+    })
+}
