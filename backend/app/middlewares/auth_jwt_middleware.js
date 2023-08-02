@@ -62,5 +62,5 @@ module.exports = {
     verifyToken: verifyToken,
     IsAdmin: IsAdmin,
     IsBalcao: IsBalcao,
-    IsCozinha: IsCozinha
+    IsCozinha: IsCozinha,
 }
