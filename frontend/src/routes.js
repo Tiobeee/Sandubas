@@ -1,10 +1,13 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+
 import { isAuthenticated } from "./services/auth";
+import SignUp from './pages/SignUp';
 
 const LoginPage = () => <h1>Login</h1>;
-const SignUpPage = () => <h1>SingUp</h1>;
-const NotFoundPage = () => <h1>Page not found</h1>;
+const SignUpPage = () => <SignUp />;
+const NotFoundPage = () => <h1>Page not found...</h1>;
 const AppPage = () => {
     if (!isAuthenticated()){
         return <Navigate to="/" replace/>

@@ -2,8 +2,10 @@
 import React, {useState} from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { Form, Container } from "./style";
-
 import api from "../../services/api";
+import Logo from "../../assets/bapbap.png";
+
+
 
 const SignUp = () => {
     const [email, setEmail] = useState("");
@@ -23,30 +25,31 @@ const SignUp = () => {
                 navigate("/");
             } catch (err){
                 console.log(err);
-                setError("Ocorreu um erro ao registrar sua conta.")
+                setError("Ocorreu um erro ao regicd strar sua conta.")
             }
         }
         
     }
-}
+
 
 return (
     <Container>
-        <Form>
+        <Form onSubmit={handleSignUp}>
+            <img src={Logo} alt="logo_senac" />
             <input
-            type="email"
-            placeholder="Endereço de email"
-            onChange={e => setEmail(e.target.value)}
+                type="email"
+                placeholder="Endereço de email"
+                onChange={e => setEmail(e.target.value)}
             />
             <input 
-            type="password"
-            placeholder="Senha"
-            onChange={e => setSenha(e.target.value)}
+                type="password"
+                placeholder="Senha"
+                onChange={e => setSenha(e.target.value)}
             />
             <input
-            type="number"
-            placeholder="Tipo de Acesso"
-            onChange={e => setTipo(e.target.value)}
+                type="number"
+                placeholder="Tipo de Acesso"
+                onChange={e => setTipo(e.target.value)}
             />
             <button type="submit">Cadastro de Usuário</button>
             <Link to="/">Fazer Login</Link>
@@ -54,3 +57,6 @@ return (
         
     </Container>
 )
+}
+
+export default SignUp;
