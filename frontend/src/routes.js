@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
-
 import { isAuthenticated } from "./services/auth";
 import SignUp from './pages/SignUp';
 

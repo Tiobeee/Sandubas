@@ -21,11 +21,11 @@ const SignUp = () => {
             setError("Preencha todos os dados para se cadastrar");
         } else {
             try {
-                await api.post("/singup", {email, senha, tipo});
+                await api.post("/signup", {email, senha, tipo});
                 navigate("/");
             } catch (err){
                 console.log(err);
-                setError("Ocorreu um erro ao regicd strar sua conta.")
+                setError("Ocorreu um erro ao registrar sua conta.")
             }
         }
         
