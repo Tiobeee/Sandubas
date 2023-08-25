@@ -1,4 +1,4 @@
-export const TOKEN_KEY = "@senac-token";
+export const TOKEN_KEY = "accessToken";
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
 export const getToken = () => localStorage.getItem(TOKEN_KEY);
 
@@ -8,4 +8,8 @@ export const login = token => {
 
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
+}
+
+export const produto = token => {
+    localStorage.setItem(TOKEN_KEY, token);
 }
