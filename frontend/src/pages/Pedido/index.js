@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import Navbar from "../../components/Navbar";
 import { Container, Form } from './style';
 import Logo from '../../assets/bapbap.png'
 
@@ -27,6 +28,8 @@ const Pedido = () => {
     }
 
     return (
+        <div>
+            <Navbar />
         <Container>
             <Form onSubmit={handleSignIn}>
                 <img src={Logo} alt='logo_senac'/>
@@ -44,6 +47,8 @@ const Pedido = () => {
                {error && <p>{error}</p>}
             </Form>
         </Container>
+        </div>
     );
+    
 }
 export default Pedido;

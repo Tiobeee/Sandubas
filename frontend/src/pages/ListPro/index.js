@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom';
 import { FaEdit, FaWindowClose, FaExclamation } from 'react-icons/fa';
 import api from "../../services/api";
 import Navbar from "../../components/Navbar";
-import { UsuarioContainer } from "./style";
+import { ProdutoContainer } from "./style";
 
-const Usuarios = () => {
-    const [usuarios, setUsuarios] = useState([]);
+const ListPro = () => {
+    const [produtos, setProdutos] = useState([]);
     const [error, setError] = useState('');
 
     useEffect(() => {
         async function getData(){
-            const response = await api.get('/usuarios');
-            setUsuarios(response.data);
+            const response = await api.get('/produtos');
+            setProdutos(response.data);
         }
         getData();
     }, []);
@@ -28,10 +28,10 @@ const Usuarios = () => {
         e.persist();
         let response = '';
         try{
-            response = await api.delete(`/usuarios/${id}`);
-            const novosUsuarios = [...usuarios];
-            novosUsuarios.splice(index, 1);
-            setUsuarios(novosUsuarios);
+            response = await api.delete(`/produtos/${id}`);
+            const novosProdutos = [...produtos];
+            novosProdutos.splice(index, 1);
+            setProdutos(novosProdutos);
         }catch(err){
             setError('Houve um problema meno'+response);
         }
@@ -40,40 +40,40 @@ const Usuarios = () => {
     return (
         <div>
             <Navbar />
-            <h1>Listagem de Usuários</h1>
+            <h1>Listagem de Produtos</h1>
             {error && <p>{error}</p>}
-            <UsuarioContainer>
+            <ProdutoContainer>
                 <div>
                     <span>ID</span>
-                    <span>Email</span>
-                    <span>Tipo</span>
+                    <span>Nome</span>
+                    <span>Valor</span>
                     <span>Editar</span>
                     <span>Excluir</span>
 
                 </div>
-                {usuarios.map((usuario, index) => (
-                    <div key={String(usuario.idusuarios)}>
-                        <span>{usuario.idusuarios}</span>
-                        <span>{usuario.email}</span>
-                        <span>{usuario.tipo}</span>
-                       =<Link to={`/usuarios/${usuario.idusuarios}`}>
+                {produtos.map((produto, index) => (
+                    <div key={String(produto.idprodutos)}>
+                        <span>{produto.idprodutos}</span>
+                        <span>{produto.nome}</span>
+                        <span>{produto.valor}</span>
+                       =<Link to={`/produtos/${produto.idprodutos}`}>
                             <FaEdit size={16} />
                        </Link>
-                        <Link onClick={handleDeleteAsk} to={`/usuarios/${usuario.idusuarios}`}>
+                        <Link onClick={handleDeleteAsk} to={`/produtos/${produto.idprodutos}`}>
                             <FaWindowClose size={16} />
                         </Link>
                         <FaExclamation
                             size={16}
                             display="none"
                             cursor="point"
-                            onClick={(e) => handleDelete(e, usuario.idusuarios, index)}
+                            onClick={(e) => handleDelete(e, produto.idprodutos, index)}
                         />
                     </div>
                 ))}
-            </UsuarioContainer>
+            </ProdutoContainer>
             
         </div>
     )
 };
 
-export default Usuarios;
+export default ListPro;

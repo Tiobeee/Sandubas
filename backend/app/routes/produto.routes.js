@@ -4,11 +4,11 @@ module.exports = app => {
 
     //routes: rota url
     // rota para criar m novo regirstro produto
-    app.post("/produtos", produtoController.create);
+    app.post("/produtos", [authJwt.verifyToken, authJwt.IsAdmin], produtoController.create);
     //buscar todos os rgistros fr produtos
-    app.get("/produtos", produtoController.findAll);
+    app.get("/produtos", [authJwt.verifyToken, authJwt.IsBalcao],produtoController.findAll);
     //buscar apenas  um regsitro de produto
-    app.get("/produtos/:produtoId", produtoController.findById);
+    app.get("/produtos/:produtoId", [authJwt.verifyToken], produtoController.findById);
     //alterar um registro de produto
     app.put("/produtos/:produtoId", [authJwt.verifyToken], produtoController.update);
     //excluir um registro de produtoas

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../../services/api';
+import Navbar from "../../components/Navbar";
 import { Container, Form } from './style';
 import Logo from '../../assets/bapbap.png'
 
@@ -28,6 +29,7 @@ const SignIn = () => {
 
     return (
         <Container>
+            <Navbar />
             <Form onSubmit={handleSignIn}>
                 <img src={Logo} alt='logo_senac'/>
                 <input
