@@ -39,9 +39,11 @@ const Rotas = () => (
             <Route path="/produtos/:id" element={<ProdutoPage />} />
             <Route path="/produtos" element={<ListProPage />} />
             <Route path='/pedido' element={<PedidoPage />} />
+            <Route path='/pedidos/:id' element={<PedidoPage />} />
             <Route path='/pedidos' element={<ListPedPage />} />
             <Route path='/produtopedido' element={<PedProPage/>} />
-            <Route path="/produtospedidos" element={<ListPedProPage/>} />
+            <Route path='/produtos_pedidos/:id' element={<PedProPage/>} />
+            <Route path="/produtos_pedidos" element={<ListPedProPage/>} />
             <Route path='/app' element={<AppPage />} />
             <Route path='/usuarios' element={<UsuariosPage />}/>
             <Route path='*' element={<NotFoundPage />} />

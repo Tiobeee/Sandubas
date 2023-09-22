@@ -17,7 +17,7 @@ const Navbar = () => {
                 <Link to="/pedidos">Lista de Pedidos</Link>
                 <Link to="/pedido">Cadastro de Pedidos</Link>
                 <Link to="/produtopedido">Cadastro de Produto_Pedido</Link>
-                <Link to="/produtospedidos">Lista de Produto_Pedido</Link>
+                <Link to="/produtos_pedidos">Lista de Produto_Pedido</Link>
                 <Link to="/logout">Logout</Link>
             </NavItems>
         </Nav>
