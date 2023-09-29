@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate }
 import { isAuthenticated } from "./services/auth";
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import Logout from './pages/Logout';
 import Produto from "./pages/Produto";
 import Pedido from "./pages/Pedido";
 import PedPro from "./pages/PedPro";
@@ -13,6 +14,7 @@ import ListPed from "./pages/ListPed";
 import ListPedPro from "./pages/ListPedPro";
 
 const LoginPage = () => <Login />;
+const LogoutPage = () => <Logout />;
 const SignUpPage = () => <SignUp />;
 const ProdutoPage = () => <Produto />;
 const PedidoPage = () => <Pedido />;
@@ -34,6 +36,7 @@ const Rotas = () => (
     <Router>
         <Routes>
             <Route path='/' element={<LoginPage />} />
+            <Route path="/logout" element={<LogoutPage />} />
             <Route path='/signup' element={<SignUpPage />} />
             <Route path='/produto' element={<ProdutoPage />} />
             <Route path="/produtos/:id" element={<ProdutoPage />} />
